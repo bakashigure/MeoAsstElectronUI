@@ -59,6 +59,9 @@ jobs:
         if: matrix.os == 'windows-latest'
         shell: pwsh
         run: New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name "LongPathsEnabled" -Value 1 -PropertyType DWORD -Force
+      
+      - name: print uname
+        run: uname -a
 
       - uses: actions/checkout@v3
         with:
