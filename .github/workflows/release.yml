@@ -74,11 +74,17 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: "pnpm"
 
+      - name: Echo node info
+        run: node -p "process"
+
       - name: Install dependencies
         run: pnpm install
 
       - name: Build app
         run: pnpm run make --arch=${{ matrix.arch }}
+
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
 
       - name: Publish to mirrors
         run: pnpm run publish --arch=${{ matrix.arch }}
